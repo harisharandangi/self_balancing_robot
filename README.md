@@ -1,4 +1,4 @@
-This Project includes,
+THIS PROJECT INCLUDES,
 
   Real-time balance control using IMU feedback
 	
@@ -10,7 +10,7 @@ This Project includes,
 	
 
 	
-Prerequirements
+REQUIREMENTS
 
   Ubuntu 20.04 OS with 
 	
@@ -20,7 +20,7 @@ Prerequirements
 		
 
 		
-Running Selfbalancing Robot Simulation
+RUNNING SELF BALANCING ROBOT SIMULATION
 
   cd ~/catkin_ws/src
 	
@@ -35,19 +35,19 @@ Running Selfbalancing Robot Simulation
   roslaunch self_balancing_robot robot_gazebo.launch
 
 	
-(Optional) Set forward speed:
+(Optional) CHANGE FORWARD SPEED:
 
   rosrun self_balancing_robot script.py _forward_speed:=0.3
 
 	
-Topics
+TOPICS
 
   /imu/data → IMU sensor readings
 	
   /cmd_vel → velocity commands to wheels
 
 	
-The PID controller is defined in balance_controller.py:
+THE PID CONTROLLER DEFINED IN script.py:
 
   Kp = 15.0
 	
