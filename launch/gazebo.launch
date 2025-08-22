@@ -1,0 +1,58 @@
+<launch>
+  <!-- robot_description from URDF file -->
+  <param name="robot_description" textfile="$(find self_balancing_robot)/urdf/self_balancing_robot.urdf" />
+
+  <!-- start Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+  </include>
+
+  <!-- static transform -->
+  <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link base_footprint 40" />
+
+  <!-- spawn the robot -->
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-file $(find self_balancing_robot)/urdf/self_balancing_robot.urdf -urdf -model self_balancing_robot -x 0 -y 0 -z 0.15 -R 0 -P 0 -Y 0"
+    output="screen" />
+
+  <!-- fake calibration topic publish -->
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+
+  <!-- load controller parameters -->
+  <rosparam file="$(find self_balancing_robot)/config/controller.yaml" command="load"/>
+
+  <!-- spawn controllers under the robot namespace -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen"
+        args="joint_state_controller left_wheel_effort_controller right_wheel_effort_controller diff_drive_controller"
+        ns="/self_balancing_robot" />
+
+  <!-- robot_state_publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen" />
+
+  <!-- RUN SCRIPT.PY as a ROS node
+       Make sure the script is: 
+         - located at ~/catkin_ws/src/self_balancing_robot/scripts/script.py
+         - executable (chmod +x ...)
+         - has a proper shebang (#!/usr/bin/env python3)
+        script inside the same namespace as your controllers so it can use the same topics.
+  -->
+  <node name="balancer_node"
+        pkg="self_balancing_robot"
+        type="script.py"
+        ns="/self_balancing_robot"
+        output="screen"
+        respawn="false" />
+</launch>
+

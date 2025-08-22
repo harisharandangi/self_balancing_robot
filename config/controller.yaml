@@ -1,0 +1,19 @@
+diff_drive_controller:
+  type: "diff_drive_controller/DiffDriveController"
+  left_wheel: "left_wheel_joint"
+  right_wheel: "right_wheel_joint"
+  publish_rate: 200
+  
+ 
+
+  wheel_separation: 0.2580           # <-- adjust based on your URDF
+  wheel_radius: 0.035              # <-- adjust based on your wheel link
+
+  base_frame_id: "base_link"
+  odom_frame_id: "odom"
+
+  enable_odom_tf: true
+
+  # Velocity limits (optional)
+  cmd_vel_timeout: 0.25
+
