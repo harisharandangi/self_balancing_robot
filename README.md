@@ -24,7 +24,7 @@ RUNNING SELF BALANCING ROBOT SIMULATION
 
   cd ~/catkin_ws/src
 	
-  git clone https://github.com/<harisharandangi>/self_balancing_robot.git
+https://github.com/harisharandangi/self_balancing_robot.git
 	
   cd ~/catkin_ws
 
