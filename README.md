@@ -10,7 +10,7 @@ THIS PROJECT INCLUDES,
 	
 
 	
-REQUIREMENTS
+REQUIREMENTS,
 
   Ubuntu 20.04 OS with 
 	
@@ -20,7 +20,7 @@ REQUIREMENTS
 		
 
 		
-RUNNING SELF BALANCING ROBOT SIMULATION
+RUNNING SELF BALANCING ROBOT SIMULATION,
 
   cd ~/catkin_ws/src
 	
@@ -35,19 +35,19 @@ https://github.com/harisharandangi/self_balancing_robot.git
   roslaunch self_balancing_robot robot_gazebo.launch
 
 	
-(Optional) CHANGE FORWARD SPEED:
+(Optional) CHANGE FORWARD SPEED,
 
   rosrun self_balancing_robot script.py _forward_speed:=0.3
 
 	
-TOPICS
+TOPICS,
 
   /imu/data → IMU sensor readings
 	
   /cmd_vel → velocity commands to wheels
 
 	
-THE PID CONTROLLER DEFINED IN script.py:
+THE PID CONTROLLER DEFINED IN script.py,
 
   Kp = 15.0
 	
